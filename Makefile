@@ -19,7 +19,8 @@ server:
 
 client:
 	cd webpack; \
-	npm install;
+	npm install; \
+	npm run build;
 
 runserver:
 	. venv/bin/activate; \
