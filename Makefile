@@ -21,6 +21,12 @@ client:
 	cd webpack; \
 	npm install;
 
+runserver:
+	. venv/bin/activate; \
+	cd django_vue_demo; \
+	open http://127.0.0.1:8000; \
+	./manage.py runserver;
+
 reset:
 	rm -rf venv
 	rm django_vue_demo/db.sqlite3
