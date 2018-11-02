@@ -4,23 +4,18 @@ webpack front, django server
 
 # 環境構築
 
-Makefile 書いてます
+./run-client-server.sh で、環境構築と起動をします。
 
-    git clone git@github.com:ytyng/django-vue-demo-cs.git
 
-    cd django-vue-demo-cs
 
-    make server
-
-途中でadminパスワードを聞かれるので適宜入力
-
-    make client
-
-サーバ起動
-
-    make runserver
 
 # 解説
+
+./run-client-server.sh の中でやってることは、
+
+Django 環境の作成: make server
+
+Webpack 環境の作成: make client
 
 factory-boy + faker でテストデータを1000件作っています
 
@@ -28,64 +23,7 @@ API は django-rest-framework で
 
 単一ファイルコンポーネント(.vueファイル)でやってます
 
-npm run watch で、ファイル修正をウォッチします
-
 # タスク
-
-## webpack-dev-server 追加
-
-    cd webpack
-
-    npm install --save-dev webpack-dev-server
-
-dev server 設定を書く
-
-webpack.config.js の上方に
-
-    const backendTarget ='http://127.0.0.1:8000';
-
-module.exports = { の中に
-
-    devServer: {
-      contentBase: 'dist/',
-      proxy: {
-        '/backend': {
-          target: backendTarget,
-          pathRewrite: {'^/backend': ''},
-        },
-        '/static': {
-          target: backendTarget,
-        },
-        '/admin': {
-          target: backendTarget,
-        },
-        '/product': {
-          target: backendTarget,
-        },
-      }
-    }
-
-※ このようなアプローチもありそう
-
-    devServer: {
-      contentBase: 'dist/',
-      proxy: {
-        '/backend': {
-          target: backendTarget,
-          pathRewrite: {'^/backend': ''},
-        },
-        ...
-
-
-package.json の scripts に追加 (カンマ注意)
-
-    "devserver": "webpack-dev-server"
-
-起動
-
-    npm run devserver
-
-vue ファイルを修正すると自動リロードされる!
 
 ## Vuex を適用
 
