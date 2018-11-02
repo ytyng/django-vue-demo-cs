@@ -5,9 +5,11 @@ import detail from './components/detail';
 
 Vue.use(VueRouter);
 
-export default new VueRouter({
+const router = new VueRouter({
   routes: [
     {path: '/', component: list, name: 'list'},
     {path: '/detail/:id/', component: detail, name: 'detail', props: true},
   ]
 });
+
+export default router;
