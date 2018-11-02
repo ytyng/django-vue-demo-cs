@@ -2,6 +2,7 @@ const path = require('path');
 const {VueLoaderPlugin} = require('vue-loader');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
+const backendTarget = 'http://127.0.0.1:8000';
 
 module.exports = {
   mode: 'development',
@@ -37,7 +38,7 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           esModule: true
-        } 
+        }
       },
       {
         test: /\.html/,
@@ -46,11 +47,11 @@ module.exports = {
     ],
   },
   resolve: {
-      alias: {
-        'vue$': 'vue/dist/vue.esm.js',
-        'vuex$': 'vuex/dist/vuex.esm.js',
-      },
-      extensions: ['*', '.js', '.vue', '.json']
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      'vuex$': 'vuex/dist/vuex.esm.js',
+    },
+    extensions: ['*', '.js', '.vue', '.json']
   },
   plugins: [
     // make sure to include the plugin for the magic
@@ -68,4 +69,22 @@ module.exports = {
     ),
     // new WriteFilePlugin(),
   ],
+  devServer: {
+    contentBase: 'dist/',
+    proxy: {
+      // '/backend': {
+      //   target: backendTarget,
+      //   pathRewrite: {'^/backend': ''},
+      // },
+      '/static': {
+        target: backendTarget,
+      },
+      '/admin': {
+        target: backendTarget,
+      },
+      '/product': {
+        target: backendTarget,
+      },
+    }
+  }
 };

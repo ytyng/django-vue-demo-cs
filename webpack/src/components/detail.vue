@@ -1,7 +1,7 @@
 <template>
   <div>
     <template v-if="product">
-      <h2>{{ product.product_name }}</h2>
+      <h2>詳細: {{ product.product_name }}</h2>
       <div>
         <small>¥</small>
         {{ product.price }}</div>

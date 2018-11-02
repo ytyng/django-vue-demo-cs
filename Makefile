@@ -15,6 +15,7 @@ server:
 	cd django_vue_demo; \
 	./manage.py migrate; \
 	./manage.py make_random_products; \
+	echo "Input your Django admin password:"; \
 	./manage.py createsuperuser --username=admin --email=$(shell git config --get user.email)
 
 client:
@@ -27,6 +28,10 @@ runserver:
 	cd django_vue_demo; \
 	open http://127.0.0.1:8000; \
 	./manage.py runserver;
+
+runclient:
+	cd webpack; \
+	npm run devserver
 
 reset:
 	rm -rf venv
