@@ -31,7 +31,12 @@ runserver:
 
 runclient:
 	cd webpack; \
+	open http://127.0.0.1:8080; \
 	npm run devserver
+
+runclientserver:
+	sh/run-client-server.sh
+
 
 reset:
 	rm -rf venv
